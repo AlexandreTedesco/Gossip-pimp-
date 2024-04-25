@@ -7,3 +7,107 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+require 'faker'
+
+city_array =[]
+user_array =[]
+tag_array =[]
+gossip_array =[]
+
+User.destroy_all
+City.destroy_all
+Gossip.destroy_all
+Tag.destroy_all
+PrivateMessage.destroy_all
+
+ActiveRecord::Base.connection.reset_sequence!('gossip', 1)
+ActiveRecord::Base.connection.reset_sequence!('user', 1)
+ActiveRecord::Base.connection.reset_sequence!('city', 1)
+ActiveRecord::Base.connection.reset_sequence!('tag', 1)
+ActiveRecord::Base.connection.reset_sequence!('privatemessage', 1)
+
+10.times do
+  city = City.create!(
+    name: Faker::Address.city,
+    zip_code: Faker::Address.zip
+  )
+  city_array << city
+end
+
+puts "10 villes créées"
+
+10.times do
+  ages = rand (20..35)
+  user = User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    description: Faker::Lorem.sentence(word_count: 10),
+    age: ages,
+    email: Faker::Internet.email,
+    city:city_array.sample
+  )
+  user_array << user
+end
+
+puts "10 users créés"
+
+10.times do
+  tag = Tag.create!(
+    title: Faker::Lorem.sentence(word_count: 1)
+  )
+  tag_array << tag
+end
+
+puts "10 tags créés"
+
+20.times do
+  gossip = Gossip.create!(
+    title: Faker::Lorem.sentence(word_count: 2),
+    content: Faker::Lorem.sentence(word_count: 15),
+    user:user_array.sample,
+    publication_date: Faker::Date.backward(days: 30),
+    tag:tag_array.sample(rand(1..3)),
+    like_count: 0,
+    city:city_array.sample
+  )
+  gossip_array << gossip
+end
+
+puts "20 auteurs créé"
+
+5.times do
+  privatemessage = PrivateMessage.create!(
+    content: Faker::Lorem.sentence(word_count: 15),
+    user:user_array.sample
+  )
+end
+
+puts "J'ai pas réussi à faire les messages privés ouin ouin!"
+
+20.times do 
+  comment = Comment.create!(
+    content: Faker::Lorem.sentence(word_count: 15),
+    user:user_array.sample,
+    gossip:gossip_array.sample
+  )
+end
+
+puts "20 coms créés"
+
+#20.times do
+  #if [true, false].sample
+    #like = Like.create!(
+      #likeable_type: "Gossip",
+      #likeable_id: gossip_array.sample.id
+    #)
+  #else
+    #like = Like.create!(
+      #likeable_type: "Comment",
+      #likeable_id: gossip_array.sample.id
+    #)
+  #end
+#end
+
+puts "<3 sur toi XD"
