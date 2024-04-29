@@ -7,7 +7,7 @@
 <div class="container">
   <div class="navbar" style="width: 100%;">
     <div class="card-body">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar rounded navbar-expand-lg navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1"><%= link_to "THE GOSSIP PROJECT", home_path, class: "navbar-brand" %></span>
     <%= link_to "Contacter nous", contact_path, class: "navbar-brand" %>
     </nav>
@@ -18,27 +18,37 @@
   <h1>Découvrez notre équipe</h1>
   <h2>La team :</h2>
   <ul>
-    <% @team_members.each do |member| %>
-      <li><%= member %></li>
+    <% @team_members.each_with_index do |member, index| %>
+      <li><%= "Bouffeur de carte graphique #{index + 1}: #{member}" %></li>
     <% end %>
   </ul>
-  <h2>Présentation</h2>
-  <p>
-    Thibault est le genre de personne qui peut résoudre des problèmes complexes en un 
+  <h2 style="color: #800080;"><%= @team_members[0] %></h2>
+  <p>Thibault est le genre de personne qui peut résoudre des problèmes complexes en un 
     clin d'œil, mais qui peut aussi oublier où il a laissé ses clés cinq fois par jour. 
     Il est la preuve vivante que vous pouvez être à la fois un génie du code et un maître 
     de la procrastination. Thibault a un talent particulier pour casser des choses juste 
     en les regardant, ce qui fait de lui un expert en résolution de problèmes — surtout 
-    ceux qu'il a créés lui-même.
-  </p>
-  <p>
-    Sa passion pour le café rivalise avec celle des Italiens pour l'espresso. Il dit 
+    ceux qu'il a créés lui-même.</p>
+  <p>Sa passion pour le café rivalise avec celle des Italiens pour l'espresso. Il dit 
     que c'est son carburant, mais c'est surtout pour rester éveillé après avoir passé 
     la nuit à regarder des séries ou à faire des marathons de jeux vidéo. Avec Thibault, 
     c'est toujours une aventure : vous ne savez jamais s'il va vous raconter une blague 
     hilarante ou vous montrer le dernier bug qu'il a trouvé. Dans tous les cas, vous êtes 
-    sûr de passer un bon moment en sa compagnie.
-  </p>
+    sûr de passer un bon moment en sa compagnie.</p>
+
+  <h2 style="color: #800080;"><%= @team_members[1] %></h2>
+  <p>Alexandre, c'est le gars qui a toutes les réponses. Sérieusement, c'est comme si 
+    Google avait une conversation avec lui tous les matins pour se tenir au courant. 
+    Vous avez une question sur la physique quantique ? Alexandre a un PowerPoint prêt 
+    à vous montrer. Besoin d'un tuto pour plier des chemises ? Il a déjà une playlist 
+    YouTube pour ça.</p>
+  <p>Le gars est tellement organisé que ses chaussettes sont classées par couleur, 
+    taille et occasion. Oui, il a des chaussettes spéciales pour les mariages de ses 
+    poissons rouges. Et ne parlons pas de son niveau de propreté : on pourrait manger par 
+    terre chez lui, même après un tremblement de terre. Certains disent qu'il a une hotline 
+    pour les problèmes ménagers, mais c'est juste sa mère qui lui donne des conseils. Bref, 
+    Alexandre est le genre de gars qui transforme un apéro en séminaire de motivation. Amenez 
+    les chips, il s'occupe du reste.</p>
 </div>
 </body>
 </html>
