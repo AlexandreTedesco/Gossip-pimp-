@@ -68,7 +68,7 @@ puts "10 tags créés"
     content: Faker::Lorem.sentence(word_count: 15),
     user:user_array.sample,
     publication_date: Faker::Date.backward(days: 30),
-    tag:tag_array.sample(rand(1..3)),
+    tags:tag_array.sample(rand(1..3)),
     like_count: 0,
     city:city_array.sample
   )

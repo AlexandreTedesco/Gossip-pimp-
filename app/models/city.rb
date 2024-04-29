@@ -1,4 +1,4 @@
 class City < ApplicationRecord
-  has_many :gossip
-  has_many :user
+  has_many :gossips
+  has_many :users
 end

@@ -9,6 +9,7 @@
   <div class="card-body">
     <nav class="navbar rounded navbar-expand-lg navbar-dark bg-dark">
   <span class="navbar-brand mb-0 h1"><%= link_to "THE GOSSIP PROJECT", home_path, class: "navbar-brand" %></span>
+  <%= link_to "Créer un gossip", new_gossip_path, class: "navbar-brand" %>
   <%= link_to "Contacter nous", contact_path, class: "navbar-brand" %>
   <%= link_to "Notre équipe", team_path, class: "navbar-brand" %>
   </nav>
@@ -31,7 +32,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= gossip.user.first_name %></h5>
               <p class="card-text"><%= gossip.title %></p>
-              <a href="#" class="card-link"><%= link_to "Voir", gossip_path(gossip) %></a>
+              <a href="#" class="card-brand"><%= link_to "Voir", gossip_path(gossip) %></a>
             </div>
           </div>
         </div>
