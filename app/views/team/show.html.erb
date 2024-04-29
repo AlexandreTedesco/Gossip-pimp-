@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notre équipe</title>
+</head>
+<body>
+<div class="container">
+  <div class="navbar" style="width: 100%;">
+    <div class="card-body">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1"><%= link_to "THE GOSSIP PROJECT", home_path, class: "navbar-brand" %></span>
+    <%= link_to "Contacter nous", contact_path, class: "navbar-brand" %>
+    </nav>
+  </div>
+</div>
+</div>
+<div class="container">
+  <h1>Découvrez notre équipe</h1>
+  <h2>La team :</h2>
+  <ul>
+    <% @team_members.each do |member| %>
+      <li><%= member %></li>
+    <% end %>
+  </ul>
+  <h2>Présentation</h2>
+  <p>
+    Thibault est le genre de personne qui peut résoudre des problèmes complexes en un 
+    clin d'œil, mais qui peut aussi oublier où il a laissé ses clés cinq fois par jour. 
+    Il est la preuve vivante que vous pouvez être à la fois un génie du code et un maître 
+    de la procrastination. Thibault a un talent particulier pour casser des choses juste 
+    en les regardant, ce qui fait de lui un expert en résolution de problèmes — surtout 
+    ceux qu'il a créés lui-même.
+  </p>
+  <p>
+    Sa passion pour le café rivalise avec celle des Italiens pour l'espresso. Il dit 
+    que c'est son carburant, mais c'est surtout pour rester éveillé après avoir passé 
+    la nuit à regarder des séries ou à faire des marathons de jeux vidéo. Avec Thibault, 
+    c'est toujours une aventure : vous ne savez jamais s'il va vous raconter une blague 
+    hilarante ou vous montrer le dernier bug qu'il a trouvé. Dans tous les cas, vous êtes 
+    sûr de passer un bon moment en sa compagnie.
+  </p>
+</div>
+</body>
+</html>

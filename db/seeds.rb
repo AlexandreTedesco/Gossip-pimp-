@@ -17,16 +17,16 @@ tag_array =[]
 gossip_array =[]
 
 User.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
 City.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('cities')
 Gossip.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('gossips')
 Tag.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('tags')
 PrivateMessage.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('privatemessages')
 
-ActiveRecord::Base.connection.reset_sequence!('gossip', 1)
-ActiveRecord::Base.connection.reset_sequence!('user', 1)
-ActiveRecord::Base.connection.reset_sequence!('city', 1)
-ActiveRecord::Base.connection.reset_sequence!('tag', 1)
-ActiveRecord::Base.connection.reset_sequence!('privatemessage', 1)
 
 10.times do
   city = City.create!(

@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
@@ -21,8 +24,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.date "publication_date"
-    t.integer "user_id"
-    t.integer "gossip_id"
+    t.bigint "user_id"
+    t.bigint "gossip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gossip_id"], name: "index_comments_on_gossip_id"
@@ -34,9 +37,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
     t.text "content"
     t.date "publication_date"
     t.integer "like_count", default: 0
-    t.integer "user_id"
-    t.integer "city_id"
-    t.integer "tag_id"
+    t.bigint "user_id"
+    t.bigint "city_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_gossips_on_city_id"
@@ -51,7 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
 
   create_table "private_messages", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_private_messages_on_user_id"
@@ -59,7 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
 
   create_table "tags", force: :cascade do |t|
     t.string "title"
-    t.integer "gossip_id"
+    t.bigint "gossip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["gossip_id"], name: "index_tags_on_gossip_id"
@@ -71,7 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_143406) do
     t.string "email"
     t.text "description"
     t.integer "age"
-    t.integer "city_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_users_on_city_id"

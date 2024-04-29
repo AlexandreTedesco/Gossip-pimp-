@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gossip page</title>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar" style="width: 100%;">
+      <div class="card-body">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1"><%= link_to "THE GOSSIP PROJECT", home_path, class: "navbar-brand" %></span>
+    <%= link_to "Contacter nous", contact_path, class: "navbar-brand" %>
+    <%= link_to "Notre équipe", team_path, class: "navbar-brand" %>
+    </nav>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+    <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
+    <div class="card <%= background_cards.sample %>" style="width: 100%;">
+      <div class="card-body">
+      <h4 class="card-title"><%= link_to @gossip.user.first_name, user_path(@gossip.user.id) %></h4>
+      <h2 class="card-subtitle mb-2 text-muted"><%= @gossip.title %></h2>
+      <p class="card-text"><%= @gossip.content %></p>
+      <p><strong>Date de création :</strong> <%= @gossip.created_at.strftime("%d/%m/%Y") %></p>
+    </div>
+  </div>    
+  </div>
+</body>
+
