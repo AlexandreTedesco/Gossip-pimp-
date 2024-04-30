@@ -16,7 +16,7 @@ user_array =[]
 tag_array =[]
 gossip_array =[]
 
-User.destroy_all
+User.where.not(id:1).destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 City.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('cities')
