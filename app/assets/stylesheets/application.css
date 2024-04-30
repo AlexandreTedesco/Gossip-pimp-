@@ -64,3 +64,8 @@ h1 {
 .card a:hover {
   text-decoration: underline;
 }
+
+.info_gossip {
+  display:flex;
+  justify-content: space-between;
+}
