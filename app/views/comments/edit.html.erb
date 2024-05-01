@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome page</title>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar" style="width: 100%;">
+      <div class="card-body">
+      <nav class="navbar rounded navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1"><%= link_to "THE GOSSIP PROJECT", home_path, class: "navbar-brand" %></span>
+    <%= link_to "Créer un gossip", new_gossip_path, class: "navbar-brand" %>
+    <%= link_to "Contacter nous", contact_path, class: "navbar-brand" %>
+    <%= link_to "Notre équipe", team_path, class: "navbar-brand" %>
+    </nav>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="container">
+      <h1>Modifier le commentaire</h1>
+      <%= form_with(model: @comment, url: gossip_comment_path(@comment), local: true) do |form| %>
+      <div class="field">
+        <%= form.label :content %>
+        <%= form.text_area :content, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :user_id, "Auteur" %>
+        <%= form.select :user_id, User.all.collect { |u| [u.first_name, u.id] }, {}, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :gossip_id, "Gossip" %>
+        <%= form.select :gossip_id, Gossip.all.collect { |g| [g.title, g.id] }, {}, class: "form-control" %>
+      </div>
+
+        <%= form.submit "Mettre à jour", class: "btn btn-primary"  %>
+    <% end %>
+    </div>
+  </div>
+</body>
+
+
+

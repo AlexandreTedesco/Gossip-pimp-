@@ -17,10 +17,16 @@
   </div>
   </div>
   <div class="container">
-    <% if flash[:success] %>
-      <div class ="alert alert-success">
-        <%= flash[:success] %>
-      </div>
+    <div class="container">
+      <% if flash[:success] %>
+        <div class ="alert alert-success">
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class ="alert alert-danger">
+          <%= flash[:error] %>
+        </div>
       <% end %>
     <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
     <div class="card <%= background_cards.sample %>" style="width: 100%;">
@@ -32,8 +38,50 @@
         <p><%= @gossip.created_at.strftime("%d/%m/%Y") %></p>
         <p><%= @gossip.city.name%></p>
       </div>
+      <div class="info_gossip">
+        <%= link_to 'Éditer Gossip', edit_gossip_path(@gossip), class: 'btn btn-light' %>
+        <%= button_to"supprimer", @gossip, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce potin?' }, class: 'btn btn-danger' %> <!--bouton delete qui ne fonctionne pas vraiment-->
+      </div>
     </div>
-  </div>    
   </div>
-</body>
+  <h2>Ajouter un commentaire</h2>
+<%= form_with model: [@gossip, Comment.new], local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :user_id, "Auteur" %>
+    <%= form.select :user_id, User.all.collect { |u| [u.first_name, u.id] }, {}, class: "form-control" %>
+  </div>
 
+  <div class="form-group">
+    <%= form.label :content, "Votre commentaire" %>
+    <%= form.text_area :content, class: "form-control" %>
+  </div>
+  
+  <%= form.hidden_field :gossip_id, value: @gossip.id %>
+
+  <div class="form-group">
+    <%= form.submit "Ajouter", class: "btn btn-outline-success" %>
+  </div>
+<% end %>
+
+<h2>Commentaires</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <% @gossip.comments.each do |comment| %>
+      <div class="col-4 mb-3"> 
+        <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <p><%= comment.content %></p>
+            <div class="info_gossip">
+              <p><%= link_to comment.user.first_name, user_path(comment.user) %></p>
+              <%= link_to "Modifier", edit_gossip_comment_path(@gossip, comment), class: "btn btn-warning" %>
+              <%= link_to "Supprimer", gossip_comment_path(@gossip, comment), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>    
+  </div>
+</div>
+</div>
+</div>
+</body>
