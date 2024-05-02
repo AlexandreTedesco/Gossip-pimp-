@@ -7,20 +7,18 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Bienvenue, #{user.first_name}!"
-      redirect_to root_path
-      puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
+      redirect_to home_path
     else
       flash[:error] = "Email ou mot de passe incorrect"
-      render :new
+      redirect_to new_session_path
     end
   end
 
 
   def destroy
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
     logout
     flash[:success] = "Vous avez été déconnecté"
     redirect_to root_path
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
+    
   end
 end

@@ -37,7 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_204734) do
     t.text "content"
     t.date "publication_date"
     t.integer "like_count", default: 0
-    t.integer "author_id"
     t.bigint "user_id"
     t.bigint "city_id"
     t.bigint "tag_id"
