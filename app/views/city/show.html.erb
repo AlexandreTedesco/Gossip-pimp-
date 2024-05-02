@@ -21,15 +21,21 @@
       <h1>Ville : <%= @city.name %></h1>
 
       <h2>Potins écrits par des utilisateurs de : <%= @city.name %></h2>
+      <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
       <% if @gossips.any? %>
-    <ul>
-      <% @gossips.each do |gossip| %>
-      <li>
-        <%= gossip.title%> écrit par <%= gossip.user.first_name %> -
-        <%= gossip.content %>
-      </li>
-    <% end %>
-    </ul>
+        <div class="row">
+          <% @gossips.each do |gossip| %>
+            <div class="col-md-4 mb-3">
+              <div class="card <%= background_cards.sample %>" style="width: 100%;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= gossip.user.first_name %> - <%= gossip.title %></h5>
+                  <p class="card-text"><%= gossip.content %></p>
+                  <%= link_to "Voir le potin", gossip_path(gossip), class: "btn btn-light" %>
+                </div>
+              </div>
+            </div>
+      <% end %>
+        </div>
     <% else %>
       <p>Aucun gossip disponible pour cette ville.</p>
     <% end %>

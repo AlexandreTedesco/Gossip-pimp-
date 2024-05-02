@@ -10,12 +10,17 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @default_user = User.find_or_create_by(first_name: "Anonymous", email: "anonyme@anonymes.fr")
-    
     @gossip = Gossip.new(gossip_params)
-    @gossip.city_id = User.find_by(id: @gossip.user_id)&.city_id || City.first.id
-    @gossip.user_id ||= @default_user.id
-    @gossip.publication_date = DateTime.now
+
+    user =User.find_by(id: session[:user_id])
+    if user&.city_id
+      @gossip.city_id = user.city_id
+    else
+      flash[:error] = "L'utilisateur connecté n'a pas de ville associée."
+      return redirect_to new_gossip_path
+    end
+    
+    @gossip.user_id = session[:user_id]
 
     if @gossip.save
       flash[:success] = 'Gossip créé avec succès !'
@@ -53,7 +58,7 @@ class GossipsController < ApplicationController
   private
 
   def gossip_params
-    params.require(:gossip).permit(:title, :content, :user_id, :city_id, :tag_id)
+    params.require(:gossip).permit(:title, :content, :tag_id)
   end
 end
 

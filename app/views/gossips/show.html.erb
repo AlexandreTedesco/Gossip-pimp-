@@ -46,10 +46,6 @@
   </div>
   <h2>Ajouter un commentaire</h2>
 <%= form_with model: [@gossip, Comment.new], local: true do |form| %>
-  <div class="form-group">
-    <%= form.label :user_id, "Auteur" %>
-    <%= form.select :user_id, User.all.collect { |u| [u.first_name, u.id] }, {}, class: "form-control" %>
-  </div>
 
   <div class="form-group">
     <%= form.label :content, "Votre commentaire" %>
@@ -72,7 +68,7 @@
           <div class="card-body">
             <p><%= comment.content %></p>
             <div class="info_gossip">
-              <p><%= link_to comment.user.first_name, user_path(comment.user) %></p>
+              <p><%= link_to comment.user.first_name, users_path(comment.user) %></p>
               <%= link_to "Modifier", edit_gossip_comment_path(@gossip, comment), class: "btn btn-warning" %>
               <%= link_to "Supprimer", gossip_comment_path(@gossip, comment), data: { turbo_method: :delete }, class: "btn btn-danger" %>
             </div>

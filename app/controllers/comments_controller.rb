@@ -2,13 +2,15 @@ class CommentsController < ApplicationController
   def create
     gossip_id = params[:comment][:gossip_id]
     gossip = Gossip.find_by(id: gossip_id)
-
+    
+    @comment = Comment.new(comment_params)
+    
     if gossip.nil?
       flash[:error] = "Potin non trouvé."
       redirect_back(fallback_location: root_path) and return
     end
-
-    @comment = Comment.new(comment_params)
+    
+    @comment.user_id = session[:user_id]
     @comment.gossip_id = gossip.id
     
 
@@ -52,6 +54,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :gossip_id, :user_id)
+    params.require(:comment).permit(:content, :gossip_id)
   end
 end

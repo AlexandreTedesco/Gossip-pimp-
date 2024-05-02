@@ -17,28 +17,29 @@
 </div>
 </div>
 <div class="container">
-<h2><%= @message %></h2>
-<p>Explorez notre site pour découvrir les derniers potins et des articles amusants. Profitez de votre visite !</p>
-<p>Voici les derniers potins :</p>
-</div>
-<ul>
-  <% if @gossips.present? %>
   <div class="container">
-    <div class="row">
-      <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
-      <% @gossips.each do |gossip| %>
-        <div class="col-4 mb-3"> 
-          <div class="card <%= background_cards.sample %>" style="width: 100%;">
-            <div class="card-body">
-              <h5 class="card-title"><%= gossip.user.first_name %></h5>
-              <p class="card-text"><%= gossip.title %></p>
-              <a href="#" class="card-brand"><%= link_to "Voir", gossip_path(gossip) %></a>
+    <h2><%= @message %></h2>
+      <p>Explorez notre site pour découvrir les derniers potins et des articles amusants. Profitez de votre visite !</p>
+      <p>Voici les derniers potins :</p>
+    </div>
+  <% if @gossips.present? %>
+    <div class="container">
+      <div class="row">
+        <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
+        <% @gossips.each do |gossip| %>
+          <div class="col-4 mb-3"> 
+            <div class="card <%= background_cards.sample %>" style="width: 100%;">
+              <div class="card-body">
+                <h5 class="card-title"><%= gossip.user.first_name %></h5>
+                <p class="card-text"><%= gossip.title %></p>
+                <a href="#" class="card-brand"><%= link_to "Voir", gossip_path(gossip) %></a>
+              </div>
             </div>
           </div>
-        </div>
       <% end %>
-  <% else %>
-    <li>Aucun potin à afficher</li>
-  <% end %>
-</ul>
+      <% else %>
+        <li>Aucun potin à afficher</li>
+      <% end %>
+    </div>
+  </div>
 </body>
