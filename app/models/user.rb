@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :gossips
   has_many :privatemessages
   has_many :comments
+  has_many :likes
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true  
 end

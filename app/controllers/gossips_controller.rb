@@ -59,6 +59,32 @@ class GossipsController < ApplicationController
       redirect_to home_path
     end
 
+    def like
+      gossip = Gossip.find(params[:id])
+      like = Like.new(user_id: current_user.id, gossip_id: gossip.id)
+    
+      if like.save
+        flash[:success] = "Vous avez aimé ce potin."
+      else
+        flash[:error] = "Erreur lors de l'ajout du like."
+      end
+    
+      redirect_to gossip_path(gossip)
+    end
+    
+    def unlike
+      gossip = Gossip.find(params[:id])
+      like = Like.find_by(user_id: current_user.id, gossip_id: gossip.id)
+    
+      if like&.destroy
+        flash[:success] = "Vous avez retiré votre like."
+      else
+        flash[:error] = "Erreur lors de la suppression du like."
+      end
+    
+      redirect_to gossip_path(gossip)
+    end
+
   private
 
   def gossip_params
