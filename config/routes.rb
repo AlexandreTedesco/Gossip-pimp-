@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get 'team', to: 'team#show'
 
   
-  resources :sessions, only: [:create, :new]
-  delete 'sessions', to: 'sessions#destroy', as: 'logout'
+  resources :sessions, only: [:create, :new, :destroy]
+  
   resources :city
   resources :users
   resources :gossips do

@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "Bienvenue, #{user.first_name}!"
       redirect_to root_path
+      puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
     else
       flash[:error] = "Email ou mot de passe incorrect"
       render :new
@@ -16,9 +17,10 @@ class SessionsController < ApplicationController
 
 
   def destroy
-    session.delete[:user_id]
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
     logout
     flash[:success] = "Vous avez été déconnecté"
     redirect_to root_path
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{session[:user_id]}"
   end
 end
