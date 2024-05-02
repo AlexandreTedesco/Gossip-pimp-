@@ -39,8 +39,10 @@
         <p><%= @gossip.city.name%></p>
       </div>
       <div class="info_gossip">
-        <%= link_to 'Éditer Gossip', edit_gossip_path(@gossip), class: 'btn btn-light' %>
-        <%= button_to"supprimer", @gossip, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce potin?' }, class: 'btn btn-danger' %> <!--bouton delete qui ne fonctionne pas vraiment-->
+        <% if current_user && current_user == @gossip.user %>
+          <%= link_to 'Éditer Gossip', edit_gossip_path(@gossip), class: 'btn btn-light' %>
+          <%= button_to"supprimer", @gossip, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce potin?' }, class: 'btn btn-danger' %>
+        <% end %>
       </div>
     </div>
   </div>

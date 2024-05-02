@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :authenticate_user!, only: [:create, :edit, :update]
+
   def create
     gossip_id = params[:comment][:gossip_id]
     gossip = Gossip.find_by(id: gossip_id)

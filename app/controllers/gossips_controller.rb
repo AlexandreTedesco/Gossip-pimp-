@@ -1,4 +1,8 @@
 class GossipsController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_creator, only: [:edit, :update, :destroy]
+
   def show
     @gossip = Gossip.find(params[:id])
   end
@@ -59,6 +63,14 @@ class GossipsController < ApplicationController
 
   def gossip_params
     params.require(:gossip).permit(:title, :content, :tag_id)
+  end
+
+  def ensure_creator
+    @gossip = Gossip.find(params[:id])
+    unless @gossip.user_id == current_user.id
+      flash[:error] = "Vous n'êtes pas autorisé à modifier ce potin."
+      redirect_to gossip_path(@gossip)
+    end
   end
 end
 
