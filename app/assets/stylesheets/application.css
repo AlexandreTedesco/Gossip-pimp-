@@ -16,10 +16,15 @@
 
 body {
   font-family: Arial, sans-serif;
+  color: rgb(239, 220, 248);
+}
+
+.contact-form {
+  color: rgb(58, 52, 61);
 }
 
 h1 {
-  color: rgb(0, 238, 255);
+  color: rgb(221, 229, 230);
 }
 
 .contact-form {
@@ -57,7 +62,7 @@ h1 {
 }
 
 .card a {
-  color: #333;
+  color: #fabdbd;
   text-decoration: none;
 }
 
@@ -68,72 +73,173 @@ h1 {
 .info_gossip {
   display:flex;
   justify-content: space-between;
+  align-items:baseline;
 }
 
 
 
 
-.Btn {
-  width: 140px;
-  height: 35px;
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+body {
+  min-height: 100vh;
+  background: #2b3149;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  border: none;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.089);
-  cursor: pointer;
-  background-color: transparent;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
 }
 
-.leftContainer {
-  width: 60%;
-  height: 100%;
-  background-color: rgb(238, 0, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
 
-.leftContainer .like {
-  color: white;
-  font-weight: 600;
-}
-
-.likeCount {
-  width: 40%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(238, 0, 0);
-  font-weight: 600;
+.card {
+  background: #2d3868;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
   position: relative;
-  background-color: white;
+  border-radius: 6px;
+  justify-content:baseline;
+  
+  text-align:right;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
 }
 
-.likeCount::before {
-  height: 8px;
-  width: 8px;
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
   position: absolute;
   content: "";
-  background-color: rgb(255, 255, 255);
-  transform: rotate(45deg);
-  left: -4px;
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
 }
 
-.Btn:hover .leftContainer {
-  background-color: rgb(219, 0, 0);
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
 }
 
-.Btn:active .leftContainer {
-  background-color: rgb(201, 0, 0);
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
 }
 
-.Btn:active .leftContainer svg {
-  transform: scale(1.15);
-  transform-origin: top;
+
+
+
+
+.glow{
+  padding:clamp(1rem,3vw,1rem);
+  border:0px solid white;
+  border-radius:1rem;
+  position:relative;
+  background-color:rgb( 52, 58, 64);
+  margin:1rem;
+  
 }
 
+:root{
+  --azul:#0033ff;
+  --violeta: #f700ff;
+  --blanco: rgb(107, 252, 63);
+  --deg:0deg;
+    
+}
+@property --deg{
+  syntax:'<angle>';
+  inherits:false;
+  initial-value:0deg;
+}
+.glow::after{
+  
+  content:'';
+  border-radius:inherit;
+  inset:-0.5rem;
+  background-color:Red;
+  position:absolute;
+  z-index:-1;
+  background:conic-gradient( from var(--deg),var(--azul),var(--violeta),var(--azul));
+  animation:girar 3s linear infinite;
+}
+
+.glow::before{
+  filter:blur(40px);
+  --deg:0deg;
+  content:'';
+  border-radius:inherit;
+  inset:-1.0rem;
+  background-color:Red;
+  position:absolute;
+  z-index:-1;
+  background:conic-gradient( from var(--deg),var(--azul),var(--violeta),var(--azul));
+  animation:girar 3s linear infinite;
+}
+
+
+@keyframes girar {
+  from{
+    --deg:0deg;
+  }
+  
+  to{
+    --deg:360deg;
+  }
+}

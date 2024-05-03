@@ -9,7 +9,6 @@
       <div class="col-4 mb-3"> 
       <% background_cards = ["pastel-blue", "pastel-pink", "pastel-green", "pastel-yellow", "pastel-orange", "pastel-purple"] %>
         <div class="card <%= background_cards.sample %>" style="width: 18rem;">
-        <%= image_tag("lvcyd.png", class: "card-img-top img-fluid", alt: "Add profile picture") %>
       <div class="card-body">
       <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
       <p class="card-text"><%= @user.description %></p>

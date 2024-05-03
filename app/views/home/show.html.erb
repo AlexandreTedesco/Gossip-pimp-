@@ -25,10 +25,8 @@
         <div class="col-4 mb-3"> 
           <div class="card <%= background_cards.sample %>" style="width: 100%;">
             <div class="card-body">
-              <div class="info_gossip">
               <h5 class="card-title"><%= gossip.user.first_name %></h5>
               <p> Com : <%= gossip.comments.count %></p>
-              </div>
               <p class="card-text"><%= gossip.title %></p>
               <div class="info_gossip">
               <%= link_to "Voir", gossip_path(gossip) %>

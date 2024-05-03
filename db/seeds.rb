@@ -46,7 +46,8 @@ puts "10 villes créées"
     description: Faker::Lorem.sentence(word_count: 10),
     age: ages,
     email: Faker::Internet.email,
-    city:city_array.sample
+    city:city_array.sample,
+    password: Faker::Internet.password(min_length: 8)
   )
   user_array << user
 end
