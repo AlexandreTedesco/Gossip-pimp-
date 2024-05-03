@@ -25,6 +25,11 @@
           <%= form.password_field :password, class: 'form-control' %>
         </div>
 
+        <div class="form-check">
+          <%= form.check_box :remember_me, class: 'form-check-input' %>
+          <%= form.label :remember_me, "Se souvenir de moi", class: 'form-check-label' %>
+        </div>
+
       <%= form.submit "Se connecter", class: 'btn btn-primary' %>
     <% end %>
   </div>

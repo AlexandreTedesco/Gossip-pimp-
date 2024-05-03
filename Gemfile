@@ -68,3 +68,4 @@ end
 
 gem 'table_print'
 gem 'faker'
+gem "dockerfile-rails", ">= 1.6", :group => :development

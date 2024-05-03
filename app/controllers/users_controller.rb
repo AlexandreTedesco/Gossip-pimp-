@@ -16,6 +16,11 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+    #  login(user) <-- VOIR SI CELA DOIT REMPLACER LA LIGNE PRECEDENTE
+
+    # on va cuisiner le cookie pour l'utilisateur
+    remember(@user)
+
       flash[:success] = "Bienvenue, #{@user.first_name}!"
       redirect_to home_path
     else
