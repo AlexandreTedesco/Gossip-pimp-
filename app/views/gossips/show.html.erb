@@ -69,7 +69,11 @@
           <div class="card-body">
             <p><%= comment.content %></p>
             <div class="info_gossip">
-              <p><%= link_to comment.user.first_name, users_path(comment.user) %></p>
+              <% if comment.user %>
+                <p><%= link_to comment.user.first_name, users_path(comment.user) %></p>
+              <% else %>
+                <p>Utilisateur inconnu</p>
+              <% end %>
               <% if current_user && current_user == comment.user %>
                 <%= link_to "Modifier", edit_gossip_comment_path(@gossip, comment), class: "btn btn-warning" %>
                 <%= link_to "Supprimer", gossip_comment_path(@gossip, comment), data: { turbo_method: :delete }, class: "btn btn-danger" %>
